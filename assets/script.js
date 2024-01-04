@@ -45,21 +45,22 @@ function cardExists(cityName) {
 // is normalized to that direction 
 // (eg 5 deg becomes N, 11 deg becomes NE)
 function angleCardinal(angle) {
-    if (0 <= angle <= 10 || 350 <= angle <= 360) {
+    console.log((0 <= angle && angle <= 10) || (350 <= angle && angle <= 360))
+    if ((0 <= angle && angle <= 10) || (350 <= angle && angle <= 360)) {
         return 'N';
-    } else if (10 <= angle < 80) {
+    } else if (10 <= angle && angle < 80) {
         return 'NE'
-    } else if (80 <= angle <= 100) {
+    } else if (80 <= angle && angle <= 100) {
         return 'E'
-    } else if (100 <= angle < 170) {
+    } else if (100 <= angle && angle < 170) {
         return 'SE'
-    } else if (170 <= angle <= 190) {
+    } else if (170 <= angle && angle <= 190) {
         return 'S'
-    } else if (190 <= angle < 260) {
+    } else if (190 <= angle && angle < 260) {
         return 'SW'
-    } else if (260 <= angle < 280) {
+    } else if (260 <= angle && angle < 280) {
         return 'W'
-    } else if (280 <= angle < 350) {
+    } else if (280 <= angle && angle < 350) {
         return 'NW'
     } else {
         return "why?"

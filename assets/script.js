@@ -114,9 +114,9 @@ function getWeather(coordinates, cityName) {
 
     // make a div that will hold the weather card
     // it's time to d-d-d-d-duel
-    var card = $(`<div class="weather-card ${cityName.toLowerCase()}">`)
+    var card = $(`<div class="weather-card space-y-2 border-double border-8 border-sky-500 rounded-lg text-center ${cityName.toLowerCase()}">`)
     // make some sections in the card for waves data and weather
-    card.append(`<h3 class="title">${cityName}</h3>
+    card.append(`<h3 class="title text-3xl">${cityName}</h3>
                 <div class="surf-content"></div>
                 <div class="weather-content"></div>`)
     console.log(card);
@@ -126,6 +126,8 @@ function getWeather(coordinates, cityName) {
     $.get(marineAPI).then(function (data) {
         console.log(data)
         populateSurf(data, card)
+    }).catch(function(){
+        card.find('.surf-content').append(`<h3>No surf, bummer</h3>`)
     })
     // call weather api
     $.get(weatherAPI).then(function (data) {
@@ -138,7 +140,11 @@ function getCoordinates() {
     // get city name from text box
     var cityName = $('#city-search').val();
     console.log(cityName);
-
+    
+    // if city name field is empty, return
+    if (cityName === "" || cityName === " "){
+        return;
+    }
     // add city to history
     writeToLocalStorage('wave-history', cityName);
     // add city name to api url to complete and make request

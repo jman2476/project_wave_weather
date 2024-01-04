@@ -14,53 +14,56 @@
 <body>
 
     <header>
-
-        <h2>Surf Report</h2>
+        <h2 class="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl"><span
+                class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">
+                Surf Report</span></h2>
         <!-- Add Background img potentially to make spin! -->
-        <nav>
-            <a href="#recent-search">Recent Searches</a>
-            <a href="#gallery">Gallery</a>
-        </nav>
-        <button>Carve the Barrel</button>
+            <nav class="font-extrabold text-emerald-600 flex justify-end space-x-8 mr-6">
+                <a href="#recent-search">Recent Searches</a>
+                <a href="#gallery">Gallery</a>
+                <button>Carve the Barrel</button>
+            </nav>
+        </header>
 
-    </header>
-
-    <aside class="sidebar">
-        <p>History</p>
-    </aside>
-
-    <main>
-
-        <input id="city-search" type="text" placeholder="Enter your City">
-        <button id="search">Search</button>
-
-
-        <!-- Example weather card -->
-        <div class="weather-card">
-            <h3 class="title">Minneapolis</h3>
-
-            <div class="surf-content">
-                <p>Wave height max: 3ft</p>
-                <p>Wave direction: NE</p>
-                <p>Wave period: 15 min</p>
-            </div>
-            <div class="weather-content">
-                <p>Temperature: 260K</p>
-                <p>Wind speed: 30 kn</p>
-                <p>Wind direction: SE</p>
-                <p>Precipitation: 5in</p>
-            </div>
+        <div>
+            <input id="city-search" class="border-4 border-emerald-600 py-2 px-3" type="text" placeholder="Enter your City">
+            <button id="search"
+            class="bg-sky-400 hover:bg-emerald-600 text-white font-bold py-1.5 px-4 rounded"
+            >Search</button>
         </div>
-    </main>
+
+        <aside class="sidebar">
+            <p>History</p>
+        </aside>
+
+        <main>
+
+            <!-- Example weather card -->
+            <div class="weather-card">
+                <h3 class="title">Minneapolis</h3>
+
+                <div class="surf-content">
+                    <p>Wave height max: 3ft</p>
+                    <p>Wave direction: NE</p>
+                    <p>Wave period: 15 min</p>
+                </div>
+                <div class="weather-content">
+                    <p>Temperature: 260K</p>
+                    <p>Wind speed: 30 kn</p>
+                    <p>Wind direction: SE</p>
+                    <p>Precipitation: 5in</p>
+                </div>
+            </div>
+        </main>
 
 
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous">
-        </script>
-    <script src="./assets/script.js"></script>
-    <footer>
-        <p></p>
-    </footer>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous">
+            </script>
+        <script src="./assets/script.js"></script>
+        <footer>
+            <p></p>
+        </footer>
 </body>
 
 </html>

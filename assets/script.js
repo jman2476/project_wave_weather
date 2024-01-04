@@ -31,7 +31,7 @@ function writeToLocalStorage(key, cityName) {
 }
 
 // function to see if card exhists on page
-function cardExhists(cityName) {
+function cardExists(cityName) {
     if ($(`.weather-card`).hasClass(`${cityName.toLowerCase()}`)) {
         return true;
     } else {
@@ -143,9 +143,9 @@ function getCoordinates() {
     writeToLocalStorage('wave-history', cityName);
     // add city name to api url to complete and make request
     var geolocateAPI = geolocateAPInub + cityName;
-    console.log(cardExhists(cityName))
+    console.log(cardExists(cityName))
     // check if card already exhists for city
-    if (!cardExhists(cityName)) {
+    if (!cardExists(cityName)) {
         // call the geolocation api
         $.get(geolocateAPI).then(function (data) {
             var coordinates = data;

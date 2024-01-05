@@ -11,11 +11,21 @@ var weatherAPInub = `https://api.openweathermap.org/data/2.5/weather?appid=${api
 
 var spin = false; // the page is not currently spinning
 
-// functions
-// array.contains('watermelon')
-// array.contains() {
-//     return array.some(item)
-// }
+//Write out the search history
+function displayHistory () {
+    // story history as a variable
+    var history = JSON.parse(localStorage.getItem('wave-history')) || [];
+
+    // if search history exists, make each into a button
+    if (history[0]) {
+        // for each element in history array, make a button in the history aside element
+        for (var index = 0; index < history.length; index++){
+            $('aside').append(`<button class="bg-orange-800 hover:bg-emerald-600 text-white font-bold py-1.5 px-4 rounded">${history[index]}</button>`)
+        }
+    }
+}
+
+
 // Check if there is anything stored in localStorage, if there is add new item to them, if there is no history create a new array []
 // make sure that there are no duplicates in the history array
 // in a seperate function, call the getWeather function 6 times to populate the page with the most recent history
@@ -29,6 +39,9 @@ function writeToLocalStorage(key, cityName) {
         history.push(cityName.toLowerCase());
         var serializeValue = JSON.stringify(history);
         localStorage.setItem(key, serializeValue);
+
+        // add a button to the history aside with the city's name on it
+        $('aside').append(`<button class="bg-orange-800 hover:bg-emerald-600 text-white font-bold py-1.5 px-4 rounded">${cityName}</button>`)
     }
 }
 
@@ -158,10 +171,20 @@ function getCoordinates() {
         // call the geolocation api
         $.get(geolocateAPI).then(function (data) {
             var coordinates = data;
-            console.log(coordinates)
+            console.log(coordinates);
             getWeather(coordinates, cityName);
         })
     }
+}
+
+// when you click a history button, it will load the information
+function historySurfButton () {
+    // get the city name from the button text
+    var cityName = $(this).text()
+    // set the search text box value to the city name
+    $('#city-search').val(cityName);
+    // call the search function to get weather and surf data
+    getCoordinates();
 }
 
 // Carve the barrel!
@@ -181,7 +204,9 @@ function barrelTime () {
     }
 }
 
-
+// call displayHistory to show the search history in the aside
+displayHistory()
 // buttons
 $('#search').click(getCoordinates)
-$('#spin').click(barrelTime)
+$('#spin').click(barrelTime);
+$('aside>button').click(historySurfButton);

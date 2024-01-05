@@ -9,6 +9,8 @@ var geolocateAPInub = `https://api.openweathermap.org/geo/1.0/direct?&appid=${ap
 // current weather api, missing 'lat={lat}&lon={lon}'
 var weatherAPInub = `https://api.openweathermap.org/data/2.5/weather?appid=${apiKey}&`
 
+var spin = false; // the page is not currently spinning
+
 // functions
 // array.contains('watermelon')
 // array.contains() {
@@ -115,7 +117,7 @@ function getWeather(coordinates, cityName) {
 
     // make a div that will hold the weather card
     // it's time to d-d-d-d-duel
-    var card = $(`<div class="weather-card space-y-2 border-double border-8 border-sky-500 rounded-lg text-center ${cityName.toLowerCase()}">`)
+    var card = $(`<div class="weather-card space-y-2 border-double border-8 border-sky-500 rounded-lg text-center bg-slate-100/50 ${cityName.toLowerCase()}">`)
     // make some sections in the card for waves data and weather
     card.append(`<h3 class="title text-3xl">${cityName}</h3>
                 <div class="surf-content"></div>
@@ -162,6 +164,24 @@ function getCoordinates() {
     }
 }
 
+// Carve the barrel!
+function barrelTime () {
+    // if the page isn't spinning, make it spin. if it is spinning, stop the spin
+    // spin will be applied to all elements except the "carve the barrel button"
+    if (!spin) {
+        // make absolutely everything spin
+        $("*").addClass('fa-spin');
+        // no remove the spin class from html, head, body, header, and nav so that the spin button can be pressed again to turn it off
+        $("html, head, body, header, nav").removeClass("fa-spin");
+        spin = true; // now things spin, so set this to true
+    } else {
+        // remove the spin class to remove nausea
+        $('*').removeClass("fa-spin");
+        spin = false; // the spin has stopped, please
+    }
+}
+
 
 // buttons
 $('#search').click(getCoordinates)
+$('#spin').click(barrelTime)

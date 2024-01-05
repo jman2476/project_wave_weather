@@ -12,17 +12,25 @@ var weatherAPInub = `https://api.openweathermap.org/data/2.5/weather?appid=${api
 var spin = false; // the page is not currently spinning
 
 //Write out the search history
-function displayHistory () {
+function displayHistory() {
     // story history as a variable
     var history = JSON.parse(localStorage.getItem('wave-history')) || [];
 
     // if search history exists, make each into a button
     if (history[0]) {
         // for each element in history array, make a button in the history aside element
-        for (var index = 0; index < history.length; index++){
+        for (var index = 0; index < history.length; index++) {
             $('aside').append(`<button class="bg-orange-800 hover:bg-emerald-600 text-white font-bold py-1.5 px-4 rounded">${history[index]}</button>`)
         }
+        // display 6 most recent history searches
+        for (var index = 0; index < 6; index++) {
+            // set the search text box value to the city name at index
+            $('#city-search').val(history[index]);
+            // call the search function to get weather and surf data
+            getCoordinates();
+        }
     }
+
 }
 
 
@@ -136,13 +144,19 @@ function getWeather(coordinates, cityName) {
                 <div class="surf-content"></div>
                 <div class="weather-content"></div>`)
     console.log(card);
-    $('main').append(card)
+    $('main').prepend(card)
+    console.log($('main').find('.weather-card').length)
+    // if there are more than 6 cards, delete the last one
+    if ($('main').find('.weather-card').length > 6) {
+        // remove the last weather card
+        $('.weather-card').last().remove()
+    }
 
     // call wave report api
     $.get(marineAPI).then(function (data) {
         console.log(data)
         populateSurf(data, card)
-    }).catch(function(){
+    }).catch(function () {
         card.find('.surf-content').append(`<h3>No surf, bummer</h3>`)
     })
     // call weather api
@@ -156,9 +170,9 @@ function getCoordinates() {
     // get city name from text box
     var cityName = $('#city-search').val();
     console.log(cityName);
-    
+
     // if city name field is empty, return
-    if (cityName === "" || cityName === " "){
+    if (cityName === "" || cityName === " ") {
         return;
     }
     // add city to history
@@ -178,7 +192,7 @@ function getCoordinates() {
 }
 
 // when you click a history button, it will load the information
-function historySurfButton () {
+function historySurfButton() {
     // get the city name from the button text
     var cityName = $(this).text()
     // set the search text box value to the city name
@@ -188,7 +202,7 @@ function historySurfButton () {
 }
 
 // Carve the barrel!
-function barrelTime () {
+function barrelTime() {
     // if the page isn't spinning, make it spin. if it is spinning, stop the spin
     // spin will be applied to all elements except the "carve the barrel button"
     if (!spin) {

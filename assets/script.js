@@ -10,6 +10,7 @@ var geolocateAPInub = `https://api.openweathermap.org/geo/1.0/direct?&appid=${ap
 var weatherAPInub = `https://api.openweathermap.org/data/2.5/weather?appid=${apiKey}&`
 
 var spin = false; // the page is not currently spinning
+var kelvinModal = false;
 
 //Write out the search history
 function displayHistory() {
@@ -113,7 +114,11 @@ function populateWeather(weatherData, cardObject) {
     var windAngle = weatherData.wind.deg;
     var windDirection = angleCardinal(windAngle);
     var description = weatherData.weather[0].main;
-
+    var cityName = weatherData.name;
+    console.log(cityName)
+    // use city name from weather object so it looks nicer
+    console.log(cardObject.find('.title').val(cityName))
+    cardObject.find('.title').append(cityName)
     // populate the card with the lovely information
     cardObject.find('.weather-content').append(`<p>Temperature: ${temperature} K</p>
     <p>Feels like: ${feelsLike} K </p>
@@ -140,7 +145,7 @@ function getWeather(coordinates, cityName) {
     // it's time to d-d-d-d-duel
     var card = $(`<div class="weather-card space-y-2 border-double border-8 border-sky-500 rounded-lg text-center bg-slate-100/50 ${cityName.toLowerCase()}">`)
     // make some sections in the card for waves data and weather
-    card.append(`<h3 class="title text-3xl">${cityName}</h3>
+    card.append(`<h3 class="title text-3xl"></h3>
                 <div class="surf-content"></div>
                 <div class="weather-content"></div>`)
     console.log(card);
@@ -224,3 +229,13 @@ displayHistory()
 $('#search').click(getCoordinates)
 $('#spin').click(barrelTime);
 $('aside>button').click(historySurfButton);
+// bring up the modal explaining why we are using Kelvin
+$('#kelvin').click(function(){
+    if (!kelvinModal){
+        $('#why-kelvin').show()
+        kelvinModal = true;
+    } else {
+        $('#why-kelvin').hide()
+        kelvinModal = false;
+    }
+})

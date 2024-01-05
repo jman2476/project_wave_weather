@@ -11,10 +11,9 @@
     <link rel="stylesheet" href="./assets/style.css">
 </head>
 
-<body class="grid grid-flow-row-dense grid-cols-3 px-4 font-serif bg-cover bg opacity-70 bg-[url('./assets/images/wave01.jpeg')] p-10"
-    class="grid grid-flow-row-dense grid-cols-3 px-4 font-serif bg-cover bg opacity--70 bg-[url('./assets/images/wave01.jpeg')]">
+<body class="grid grid-flow-row-dense grid-cols-3 font-serif bg-cover bg opacity-70 bg-[url('./assets/images/wave01.jpeg')] h-screen">
 
-    <header class="col-span-3 space-y-1">
+    <header class="col-span-3 space-y-1 px-4 p-10">
         <h2 class="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl"><span
                 class="text-transparent bg-clip-text bg-gradient-to-r to-orange-800 from-white">
                 Surf Report</span></h2>
@@ -26,14 +25,14 @@
         </nav>
     </header>
 
-    <div class="col-span-3">
+    <div class="col-span-3 px-4">
         <input id="city-search" class="border-4 border-emerald-600 py-2 px-3" type="text" placeholder="Enter your City">
         <button id="search"
             class="bg-orange-800 hover:bg-emerald-600 text-white font-bold py-1.5 px-4 rounded">Search</button>
     </div>
 
 
-    <main class="col-span-3 md:col-span-2 grid grid-cols-1 md:grid-cols-3 gap-4 content-center space-y-2 py-8">
+    <main class="col-span-3 md:col-span-2 grid grid-cols-1 md:grid-cols-3 gap-4 content-center space-y-2 py-8 px-4">
 
         <div class="weather-card space-y-2 border-double border-8 border-sky-500 rounded-lg text-center bg-slate-100">
             <h3 class="title text-3xl text-orange-800">City 1</h3>
@@ -149,14 +148,15 @@
         <p class="text-orange-800 text-bold">History</p>
     </aside>
 
+    <footer class="fixed bottom-0 left-0 col-span-3 bg-yellow-900 w-full flex justify-between">
+        <p class="bg-yellow-600">&copy;2024 Surf Report</p> 
+        <P class="bg-yellow-600">Design by our fearless Team Edson Guevara, Shannon Tice and Jeremy McKeegan</P> 
+    </footer>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous">
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous">
         </script>
     <script src="./assets/script.js"></script>
-    <footer>
-        <p>&copy;2024 Surf Report. Design by our fearless Team Jeremy Mckeegan, Shannon Tice and Edson Guevara </p>
-    </footer>
-</body>
+    </body>
 
 </html>

@@ -55,6 +55,7 @@ function writeToLocalStorage(key, cityName) {
 
 // function to see if card exhists on page
 function cardExists(cityName) {
+    // if a weather card exists for the city, return true
     if ($(`.weather-card`).hasClass(`${cityName.toLowerCase()}`)) {
         return true;
     } else {
@@ -114,10 +115,12 @@ function populateWeather(weatherData, cardObject) {
     var windDirection = angleCardinal(windAngle);
     var description = weatherData.weather[0].main;
     var cityName = weatherData.name;
-
+    var countryCode = weatherData.sys.country;
+    console.log(countryCode);
+    var locationName = `${cityName}, ${countryCode}`
     // use city name from weather object so it looks nicer
 
-    cardObject.find('.title').append(cityName)
+    cardObject.find('.title').append(locationName)
     // populate the card with the lovely information
     cardObject.find('.weather-content').append(`<p>Temperature: ${temperature} K</p>
     <p>Feels like: ${feelsLike} K </p>

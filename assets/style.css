@@ -5,3 +5,9 @@
 body {
     overflow-x: hidden;
 }
+
+@media (max-width: 769px){
+    #history button {
+    margin: 0 0 5px;
+    align-self: center;
+}}

@@ -21,7 +21,7 @@ function displayHistory() {
     if (history[0]) {
         // for each element in history array, make a button in the history aside element
         for (var index = 0; index < history.length; index++) {
-            $('aside').append(`<button class="text center bg-orange-800 hover:bg-emerald-600 text-white font-bold py-1.5 px-4 rounded">${history[index]}</button>`)
+            $('aside').append(`<button class="text center bg-orange-800 hover:bg-emerald-600 text-white font-bold py-1.5 w-3/4 px-4 rounded">${history[index]}</button>`)
         }
         // display 6 most recent history searches
         for (var index = 0; index < 6; index++) {
@@ -49,7 +49,7 @@ function writeToLocalStorage(key, cityName) {
         localStorage.setItem(key, serializeValue);
 
         // add a button to the history aside with the city's name on it
-        $('aside').append(`<button class="bg-orange-800 hover:bg-emerald-600 text-white font-bold py-1.5 px-4 rounded">${cityName}</button>`)
+        $('aside').append(`<button class="text center bg-orange-800 hover:bg-emerald-600 text-white font-bold py-1.5 w-3/4 px-4 rounded">${cityName}</button>`)
     }
 }
 

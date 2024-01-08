@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="./assets/style.css">
 </head>
 
-<body class="grid grid-flow-row-dense grid-cols-3 font-serif bg-cover bg opacity-70 bg-[url('./assets/images/wave01.jpeg')] h-screen">
+<body class="grid grid-flow-row-dense grid-cols-3 bg-cover bg-[url('./assets/images/wave01.jpeg')] h-screen">
 
     <header class="col-span-3 space-y-1 px-4 p-10">
         <h2 class="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl"><span
@@ -19,8 +19,7 @@
                 Surf Report</span></h2>
         <!-- Add Background img potentially to make spin! -->
         <nav class="font-extrabold text-orange-800 flex justify-end space-x-8 mr-6 ">
-            <a href="#recent-search">Recent Searches</a>
-            <a href="#gallery">Gallery</a>
+            <a href="#history">History</a>
             <button id="kelvin">Why are you using Kelvin?</button>
             <button id="spin">Carve the Barrel</button>
         </nav>
@@ -36,7 +35,7 @@
     </div>
 
 
-    <main class="col-span-3 md:col-span-2 grid grid-cols-1 md:grid-cols-3 gap-4 content-center space-y-2 py-8 px-4">
+    <main class="col-span-3 md:col-span-2 grid grid-cols-1 md:grid-cols-3 gap-4 content-center space-y-2 py-8 px-4 opacity-70">
 
             <!-- Here is where all surf and weather data will populate. below is an example card -->
         <!-- <div class="weather-card space-y-2 border-double border-8 border-sky-500 rounded-lg text-center bg-slate-100">
@@ -59,7 +58,7 @@
 
     </main>
 
-    <aside id='recent-search'class="sidebar text-3xl grid-cols-3 col-span-1 py-8 text-center ">
+    <aside id='history'class="sidebar text-3xl font-bold grid-cols-3 col-span-1 py-8 text-center flex flex-col w-1/2 opacity-85">
         <p class="text-orange-800 text-bold">History</p>
     </aside>
 

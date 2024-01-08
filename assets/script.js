@@ -21,7 +21,7 @@ function displayHistory() {
     if (history[0]) {
         // for each element in history array, make a button in the history aside element
         for (var index = 0; index < history.length; index++) {
-            $('aside').append(`<button class="bg-orange-800 hover:bg-emerald-600 text-white font-bold py-1.5 px-4 rounded">${history[index]}</button>`)
+            $('aside').append(`<button class="text center bg-orange-800 hover:bg-emerald-600 text-white font-bold py-1.5 px-4 rounded">${history[index]}</button>`)
         }
         // display 6 most recent history searches
         for (var index = 0; index < 6; index++) {
@@ -143,7 +143,7 @@ function getWeather(coordinates, cityName) {
 
     // make a div that will hold the weather card
     // it's time to d-d-d-d-duel
-    var card = $(`<div class="weather-card space-y-2 border-double border-8 border-sky-500 rounded-lg text-center bg-slate-100/50 ${cityName.toLowerCase()}">`)
+    var card = $(`<div class="weather-card space-y-2 border-double border-8 border-sky-500 rounded-lg text-center bg-white ${cityName.toLowerCase()}">`)
     // make some sections in the card for waves data and weather
     card.append(`<h3 class="title text-3xl"></h3>
                 <div class="surf-content"></div>

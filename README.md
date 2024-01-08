@@ -15,6 +15,9 @@ Because the Geocoding API will look up the first city that fits the name, if you
 
 When you load the page after using it, you should be greated with six of your historical searches displayed as full info cards, and a list of your full search history on the righthand side (or below the weather cards if you are on a mobile device). When you add another search, the last surf data card should be removed, and your new search will populate the first space, with the other surf data cards moving down.
 
+# Mockup
+![Website demo](./assets/images/scrnli_1_8_2024_10-45-29%20AM.png)
+
 # APIs and Frameworks
 For this project, we used the following APIs to gather our weather and surf data:
 

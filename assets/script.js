@@ -40,8 +40,7 @@ function displayHistory() {
 // in a seperate function, call the getWeather function 6 times to populate the page with the most recent history
 function writeToLocalStorage(key, cityName) {
     var history = JSON.parse(localStorage.getItem(key)) || [] //sets history variable to be the search history or an empty variable
-    console.log('store');
-    console.log(history)
+
     // if history doesn't include cityName
     // add cityName to history
     if (!history.includes(cityName.toLowerCase())) {
@@ -69,7 +68,7 @@ function cardExists(cityName) {
 // is normalized to that direction 
 // (eg 5 deg becomes N, 11 deg becomes NE)
 function angleCardinal(angle) {
-    console.log((0 <= angle && angle <= 10) || (350 <= angle && angle <= 360))
+    
     if ((0 <= angle && angle <= 10) || (350 <= angle && angle <= 360)) {
         return 'N';
     } else if (10 <= angle && angle < 80) {
@@ -98,7 +97,7 @@ function populateSurf(waveData, cardObject) {
     var waveAngle = waveData.hourly.wave_direction[0]; // get wave angle
     var waveDirection = angleCardinal(waveAngle); // change angle into cardinal direction
     var wavePeriod = waveData.hourly.wave_period[0] // get wave period in seconds
-    console.log(waveHeightMax, waveDirection, wavePeriod)
+    
 
     cardObject.find('.surf-content').append(`<p>Wave height max: ${waveHeightMax} m</p>
     <p>Wave direction: ${waveDirection}</p>
@@ -115,9 +114,9 @@ function populateWeather(weatherData, cardObject) {
     var windDirection = angleCardinal(windAngle);
     var description = weatherData.weather[0].main;
     var cityName = weatherData.name;
-    console.log(cityName)
+
     // use city name from weather object so it looks nicer
-    console.log(cardObject.find('.title').val(cityName))
+
     cardObject.find('.title').append(cityName)
     // populate the card with the lovely information
     cardObject.find('.weather-content').append(`<p>Temperature: ${temperature} K</p>
@@ -129,7 +128,7 @@ function populateWeather(weatherData, cardObject) {
 
 // function to get surf and weather conditions
 function getWeather(coordinates, cityName) {
-    console.log(coordinates[0])
+
     // extract longitude and latitude from coordinates
     var latitude = coordinates[0].lat;
     var longitude = coordinates[0].lon;
@@ -138,8 +137,7 @@ function getWeather(coordinates, cityName) {
     var marineAPI = marineAPInub + `&latitude=${latitude}&longitude=${longitude}`
     var weatherAPI = weatherAPInub + `lat=${latitude}&lon=${longitude}`
     // log urls for verification
-    console.log(marineAPI)
-    console.log(weatherAPI)
+
 
     // make a div that will hold the weather card
     // it's time to d-d-d-d-duel
@@ -148,9 +146,9 @@ function getWeather(coordinates, cityName) {
     card.append(`<h3 class="title text-3xl"></h3>
                 <div class="surf-content"></div>
                 <div class="weather-content"></div>`)
-    console.log(card);
+
     $('main').prepend(card)
-    console.log($('main').find('.weather-card').length)
+
     // if there are more than 6 cards, delete the last one
     if ($('main').find('.weather-card').length > 6) {
         // remove the last weather card
@@ -159,14 +157,14 @@ function getWeather(coordinates, cityName) {
 
     // call wave report api
     $.get(marineAPI).then(function (data) {
-        console.log(data)
+
         populateSurf(data, card)
     }).catch(function () {
         card.find('.surf-content').append(`<h3>No surf, bummer</h3>`)
     })
     // call weather api
     $.get(weatherAPI).then(function (data) {
-        console.log(data)
+
         populateWeather(data, card)
     })
 }
@@ -174,7 +172,7 @@ function getWeather(coordinates, cityName) {
 function getCoordinates() {
     // get city name from text box
     var cityName = $('#city-search').val();
-    console.log(cityName);
+
 
     // if city name field is empty, return
     if (cityName === "" || cityName === " ") {
@@ -184,13 +182,12 @@ function getCoordinates() {
     writeToLocalStorage('wave-history', cityName);
     // add city name to api url to complete and make request
     var geolocateAPI = geolocateAPInub + cityName;
-    console.log(cardExists(cityName))
+
     // check if card already exhists for city
     if (!cardExists(cityName)) {
         // call the geolocation api
         $.get(geolocateAPI).then(function (data) {
             var coordinates = data;
-            console.log(coordinates);
             getWeather(coordinates, cityName);
         })
     }
@@ -238,4 +235,7 @@ $('#kelvin').click(function(){
         $('#why-kelvin').hide()
         kelvinModal = false;
     }
+})
+$('#resignation').click(function(){
+    $("#why-kelvin").hide()
 })
